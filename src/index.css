@@ -1,13 +1,144 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px; 
 }
+.container {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+}
+
+.navbar {
+  background-color: #d9d9d9;
+  padding: 15px;
+}
+
+.navbar-brand {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+.content {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.description {
+  flex: 1;
+  margin-right: 20px;
+ 
+}
+
+.description h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+ p,h3 {
+  font-size: 25px;
+  line-height: 1.5;
+  margin-top: 30px;
+}
+
+.image {
+  width: 50%;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+}
+
+.btn-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Login.css */
+.SignApp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+}
+
+.errmsg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.offscreen {
+  position: absolute;
+  left: -10000px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 300px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* SignUp.css */
+
+
+
+
+
