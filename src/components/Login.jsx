@@ -1,16 +1,18 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useAuth } from "../provider/authProvider";
+import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 const Login = () => {
   const userRef = useRef();
-
+  const { setToken } = useAuth();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,10 @@ const Login = () => {
         user: user,
         pwd: pwd,
       });
+      const token = response.data.token;
+
+      setToken(token);
+      navigate("/", { replace: true });
 
       console.log(response.data);
       setSuccess(true);
