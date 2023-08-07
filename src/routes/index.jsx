@@ -1,16 +1,11 @@
-import {
-  RouterProvider,
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import Logout from "../components/Logout";
-import Budget from "../components/Budget";
+import Budget from "../components/Budget/Budget";
 import Analytics from "../components/Analytics";
 import Header from "../components/Header";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import aqshaLogo from "../components/images/aqsha-logo.jpg";
 import { useAuth } from "../provider/authProvider";
-import Header from "./Header";
+
 const Home = () => {
   const { token } = useAuth();
   return (

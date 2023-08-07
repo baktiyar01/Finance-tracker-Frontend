@@ -5,6 +5,7 @@
 // import SignUp from "./components/SignUp";
 import AuthProvider from "./provider/authProvider";
 import Routers from "./routes";
+import "bootstrap/dist/css/bootstrap.min.css";
 // const App = () => {
 //   return (
 //     <Router>
