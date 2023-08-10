@@ -13,11 +13,13 @@ import ViewExpenseForm from "./ViewExpenseForm";
 const Budget = () => {
   const { token } = useAuth();
   const userId = jwt_decode(token).id;
+
   const [budgets, setBudgets] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [showAddBudgetForm, setShowAddBudgetForm] = useState(false);
   const [showAddExpenseForm, setShowAddExpenseForm] = useState(false);
   const [selectedBudgetId, setSelectedBudgetId] = useState(null);
+
   const handleShowAddBudgetForm = () => {
     setShowAddBudgetForm(true);
   };
@@ -64,6 +66,7 @@ const Budget = () => {
           )
       );
       await axios.delete(`http://localhost:3001/budgets/${budgetId}`);
+
       fetchBudgets();
       fetchExpenses();
     } catch (error) {
@@ -125,6 +128,7 @@ const Budget = () => {
     } catch (error) {
       console.error("Failed to fetch expenses:", error);
     }
+    console.log(budgetId);
   };
 
   useEffect(() => {

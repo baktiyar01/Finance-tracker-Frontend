@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../provider/authProvider";
 import { useNavigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 axios.defaults.withCredentials = true;
 
 const Login = () => {
@@ -24,9 +25,10 @@ const Login = () => {
       });
       const token = response.data.token;
 
-      setToken(token);
-      navigate("/", { replace: true });
-
+      setTimeout(() => {
+        setToken(token);
+        navigate("/", { replace: true });
+      }, 500);
       console.log(response.data);
       setSuccess(true);
     } catch (error) {
@@ -47,13 +49,18 @@ const Login = () => {
   return (
     <div className="SignApp">
       {success ? (
-        <section>
-          <h1>You are logged in</h1>
-          <br />
-          <p>
-            <Link to="/">Go to Home</Link>
-          </p>
-        </section>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Spinner animation="border">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
       ) : (
         <section>
           <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
