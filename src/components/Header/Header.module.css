@@ -1,0 +1,59 @@
+/* Header.module.css */
+
+/* Base styles */
+.navbar {
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navLink {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.navbarBrand {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logoutBtn {
+  padding: 8px 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logoutBtn:hover {
+  background-color: #cc0000;
+}
+
+/* Media query for phone-sized screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically for phone */
+    align-items: center;
+    padding: 10px 0; /* Reduce vertical padding for phone */
+  }
+
+  .navLink {
+    margin: 5px 0; /* Reduce margin for phone */
+  }
+
+  .navbarBrand {
+    margin-bottom: 10px; /* Add margin to brand for phone */
+  }
+
+  .logoutBtn {
+    margin-top: 10px; /* Add margin to button for phone */
+  }
+}

@@ -13,7 +13,6 @@ import ViewExpenseForm from "./ViewExpenseForm";
 const Budget = () => {
   const { token } = useAuth();
   const userId = jwt_decode(token).id;
-
   const [budgets, setBudgets] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [showAddBudgetForm, setShowAddBudgetForm] = useState(false);
@@ -47,8 +46,6 @@ const Budget = () => {
           ...budgetData,
         }
       );
-
-      console.log("Budget added successfully:", response.data);
       fetchBudgets();
     } catch (error) {
       console.error("Failed to add budget:", error);
@@ -83,8 +80,6 @@ const Budget = () => {
           ...expenseData,
         }
       );
-
-      console.log("Expense added successfully:", response.data);
       fetchExpenses(expenseData.budget_id.id);
       setBudgets((prevBudgets) =>
         prevBudgets.map((budget) =>
@@ -128,7 +123,6 @@ const Budget = () => {
     } catch (error) {
       console.error("Failed to fetch expenses:", error);
     }
-    console.log(budgetId);
   };
 
   useEffect(() => {
@@ -151,7 +145,6 @@ const Budget = () => {
         <div
           style={{
             display: "grid",
-            //gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             gap: "1rem",
             alignItems: "flex-start",
           }}

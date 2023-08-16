@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import styles from "./Auth.module.css";
 
 const SignUp = () => {
   const userRef = useRef();
@@ -46,20 +47,24 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="SignApp">
+      <div className={styles.SignApp}>
         {success ? (
-          <section>
+          <section className={styles.section}>
             <h1>You are successfully registered</h1>
             <p>
               <Link to="/">Go to Home</Link>
             </p>
           </section>
         ) : (
-          <section>
-            <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="username">UserName:</label>
+          <section className={styles.section}>
+            <p className={errMsg ? styles.errMsg : styles.offscreen}>
+              {errMsg}
+            </p>
+            <h1 className={styles.h1}>Sign Up</h1>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <label htmlFor="username" className={styles.label}>
+                User name:
+              </label>
               <input
                 type="text"
                 id="username"
@@ -68,25 +73,34 @@ const SignUp = () => {
                 onChange={(e) => setUser(e.target.value)}
                 value={user}
                 required
+                className={styles.input}
               />
 
-              <label htmlFor="password">Password:</label>
+              <label htmlFor="password" className={styles.label}>
+                Password:
+              </label>
               <input
                 type="password"
                 id="password"
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 required
+                className={styles.input}
               />
-              <label htmlFor="con-password">Confirm Password:</label>
+              <label htmlFor="con-password" className={styles.label}>
+                Confirm Password:
+              </label>
               <input
                 type="password"
                 id="con-password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={confirmPassword}
                 required
+                className={styles.input}
               />
-              <button type="submit">Submit</button>
+              <button type="submit" className={styles.button}>
+                Submit
+              </button>
             </form>
           </section>
         )}

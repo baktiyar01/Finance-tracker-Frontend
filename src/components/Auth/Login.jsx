@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../provider/authProvider";
+import { useAuth } from "../../provider/authProvider";
 import { useNavigate } from "react-router-dom";
+import styles from "./Auth.module.css";
 import Spinner from "react-bootstrap/Spinner";
 axios.defaults.withCredentials = true;
 
@@ -47,26 +48,21 @@ const Login = () => {
   };
 
   return (
-    <div className="SignApp">
+    <div className={styles.SignApp}>
       {success ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
+        <div className="loading-container">
           <Spinner animation="border">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </div>
       ) : (
-        <section>
-          <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
-          <h1>Sign in</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
+        <section className={styles.section}>
+          <p className={errMsg ? styles.errMsg : styles.offscreen}>{errMsg}</p>
+          <h1 className={styles.h1}>Sign in</h1>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <label htmlFor="username" className={styles.label}>
+              Username:
+            </label>
             <input
               type="text"
               id="username"
@@ -75,24 +71,27 @@ const Login = () => {
               onChange={(e) => setUser(e.target.value)}
               value={user}
               required
+              className={styles.input}
             />
 
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className={styles.label}>
+              Password:
+            </label>
             <input
               type="password"
               id="password"
               onChange={(e) => setPwd(e.target.value)}
               value={pwd}
               required
+              className={styles.input}
             />
-            <button type="submit">Submit</button>
+            <button type="submit" className={styles.button}>
+              Submit
+            </button>
           </form>
           <p>
-            Need an account?
+            Need an account? <Link to="/signup">Sign Up</Link>
             <br />
-            <span className="line">
-              <Link to="/signup">Sign Up</Link>
-            </span>
           </p>
         </section>
       )}

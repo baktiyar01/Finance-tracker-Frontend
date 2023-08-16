@@ -19,7 +19,7 @@ const BudgetList = ({
         }, 0);
 
         return (
-          <div key={budget.id}>
+          <div key={budget.id} className="mb-3">
             <BudgetCard
               name={budget.budget_name}
               amount={totalSpent}

@@ -1,0 +1,105 @@
+.container {
+  font-size: 22px;
+  padding: 0 20px; 
+}
+
+.content {
+  display: flex;
+  flex-direction: row-reverse; 
+}
+
+.description {
+  flex: 1;
+  margin-right: 20px; 
+  text-align: left; 
+}
+
+.description h1 {
+  font-size: 32px; 
+  margin-top: 30px; 
+}
+
+.btnContainer {
+  text-align: right; 
+  margin-top: 20px;
+}
+
+.btnPrimary {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.p,
+.h3 {
+  font-size: 25px; 
+  line-height: 1.5;
+  margin-top: 30px; 
+}
+
+.h1 {
+  font-size: 32px; 
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.image {
+  width: 50%; 
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+}
+
+.errmsg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.offscreen {
+  position: absolute;
+  left: -10000px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    margin-right: 0; 
+    text-align: center; 
+    padding: 20px 0; 
+  }
+
+  .description h1 {
+    font-size: 28px; 
+    margin-top: 20px; 
+  }
+
+  .btnContainer {
+    text-align: center; 
+  }
+
+  .p,
+  .h3 {
+    font-size: 20px; 
+    margin-top: 20px; 
+    text-align: center; 
+  }
+
+  .h1 {
+    font-size: 28px; 
+  }
+
+  .image {
+    width: 100%; 
+  }
+}

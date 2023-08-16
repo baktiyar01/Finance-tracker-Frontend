@@ -1,6 +1,5 @@
 import React from "react";
 import { Pie, Bar } from "react-chartjs-2";
-import { Card } from "react-bootstrap";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -10,14 +9,13 @@ import {
   CategoryScale,
   BarElement,
 } from "chart.js";
-import { currencyFormatter } from "./Budget/utils";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "../provider/authProvider";
+import { useAuth } from "../../provider/authProvider";
 import jwt_decode from "jwt-decode";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import styles from "./Analytics.module.css";
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -117,7 +115,7 @@ const Analytics = () => {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className={styles.date}>
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
@@ -134,8 +132,8 @@ const Analytics = () => {
           minDate={startDate}
         />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <div style={{ maxWidth: "600px" }}>
+      <div className={styles.container}>
+        <div className={styles.bar}>
           <h3>Bar Chart: Total Expense and Daily Average by Month</h3>
           <Bar
             data={{
@@ -156,7 +154,7 @@ const Analytics = () => {
             options={barChartOptions}
           />
         </div>
-        <div style={{ maxWidth: "400px" }}>
+        <div className={styles.pie}>
           <h3>Pie Chart: Spend Percentage by Budget</h3>
           <Pie
             data={{
