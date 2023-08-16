@@ -134,7 +134,7 @@ const Analytics = () => {
       </div>
       <div className={styles.container}>
         <div className={styles.bar}>
-          <h3>Bar Chart: Total Expense and Daily Average by Month</h3>
+          <h3>Total Expense and Daily Average by Month</h3>
           <Bar
             data={{
               labels: barChartLabels,
@@ -155,7 +155,7 @@ const Analytics = () => {
           />
         </div>
         <div className={styles.pie}>
-          <h3>Pie Chart: Spend Percentage by Budget</h3>
+          <h3>Spend Percentage by Budget</h3>
           <Pie
             data={{
               labels: pieChartData.map((data) => data.label),
