@@ -1,6 +1,3 @@
-/* Header.module.css */
-
-/* Base styles */
 .navbar {
   background-color: #d9d9d9;
   display: flex;
@@ -37,23 +34,32 @@
   background-color: #cc0000;
 }
 
-/* Media query for phone-sized screens */
+.btnPrimary {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
-    flex-direction: column; /* Stack items vertically for phone */
+    flex-direction: column;
     align-items: center;
-    padding: 10px 0; /* Reduce vertical padding for phone */
+    padding: 10px 0; 
   }
 
   .navLink {
-    margin: 5px 0; /* Reduce margin for phone */
+    margin: 5px 0; 
   }
 
   .navbarBrand {
-    margin-bottom: 10px; /* Add margin to brand for phone */
+    margin-bottom: 10px;
   }
 
   .logoutBtn {
-    margin-top: 10px; /* Add margin to button for phone */
+    margin-top: 10px;
   }
 }

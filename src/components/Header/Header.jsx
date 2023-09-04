@@ -12,6 +12,15 @@ const Header = ({ children }) => {
         <Link to="/" className={styles.navbarBrand}>
           AQSHA
         </Link>
+        {!token && (
+          <>
+            <div className={styles.btnContainer}>
+              <Link to="/login" className={styles.btnPrimary}>
+                Login
+              </Link>
+            </div>
+          </>
+        )}
         {token && (
           <>
             <Link to="/budget" className={styles.navLink}>

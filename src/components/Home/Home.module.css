@@ -1,6 +1,6 @@
 .container {
   font-size: 22px;
-  padding: 0 20px; 
+  
 }
 
 .content {
@@ -17,21 +17,6 @@
 .description h1 {
   font-size: 32px; 
   margin-top: 30px; 
-}
-
-.btnContainer {
-  text-align: right; 
-  margin-top: 20px;
-}
-
-.btnPrimary {
-  padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
 }
 
 .p,
@@ -66,7 +51,56 @@
   left: -10000px;
 }
 
+.aboutUs {
+  margin-top: 50px;
+  text-align: center;
+}
 
+.aboutUsColumns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.column {
+  flex: 1;
+}
+
+.instructions {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px 20px;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerLink {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footerLink:hover {
+  color: #0056b3;
+}
+
+.card{
+  padding: 3rem 4rem;
+  transition: transform 0.3s ease-in-out;
+  
+} 
+
+.card:hover {
+  transform: scale(1.05);
+ 
+}
 @media screen and (max-width: 768px) {
   .content {
     flex-direction: column;

@@ -44,11 +44,16 @@ const Budget = () => {
         {
           user_id: userId,
           ...budgetData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       fetchBudgets();
     } catch (error) {
-      console.error("Failed to add budget:", error);
+      console.error("Failed to delete expense:", error);
     }
     handleCloseAddBudgetForm();
   };
@@ -59,15 +64,23 @@ const Budget = () => {
         expenses
           .filter((expense) => expense.budget_id === budgetId)
           .map((expense) =>
-            axios.delete(`http://localhost:3001/expenses/${expense.id}`)
+            axios.delete(`http://localhost:3001/data/expenses/${expense.id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
           )
       );
-      await axios.delete(`http://localhost:3001/budgets/${budgetId}`);
+      await axios.delete(`http://localhost:3001/data/budgets/${budgetId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchBudgets();
       fetchExpenses();
     } catch (error) {
-      console.error("Failed to delete budget:", error);
+      console.error("Failed to delete expense:", error);
     }
   };
 
@@ -78,6 +91,11 @@ const Budget = () => {
         {
           user_id: userId,
           ...expenseData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       fetchExpenses(expenseData.budget_id.id);
@@ -89,14 +107,18 @@ const Budget = () => {
         )
       );
     } catch (error) {
-      console.error("Failed to add expense:", error);
+      console.error("Failed to delete expense:", error);
     }
     handleCloseAddExpenseForm();
   };
 
   const handleDeleteExpense = async (expenseId, budgetId) => {
     try {
-      await axios.delete(`http://localhost:3001/expenses/${expenseId}`);
+      await axios.delete(`http://localhost:3001/data/expenses/${expenseId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchExpenses(budgetId);
     } catch (error) {
       console.error("Failed to delete expense:", error);
@@ -106,22 +128,32 @@ const Budget = () => {
   const fetchBudgets = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/budgets?userId=${userId}`
+        `http://localhost:3001/data/budgets?userId=${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setBudgets(response.data);
     } catch (error) {
-      console.error("Failed to fetch budgets:", error);
+      console.error("Failed to delete expense:", error);
     }
   };
 
   const fetchExpenses = async (budgetId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/expenses?userId=${userId}&budgetId=${budgetId}`
+        `http://localhost:3001/data/expenses?userId=${userId}&budgetId=${budgetId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setExpenses(response.data);
     } catch (error) {
-      console.error("Failed to fetch expenses:", error);
+      console.error("Failed to delete expense:", error);
     }
   };
 

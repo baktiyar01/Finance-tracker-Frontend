@@ -34,7 +34,12 @@ const Analytics = () => {
   const fetchBudgets = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/budgets?userId=${userId}`
+        `http://localhost:3001/data/budgets?userId=${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass the token in the headers
+          },
+        }
       );
       setBudgets(response.data);
     } catch (error) {
@@ -44,7 +49,12 @@ const Analytics = () => {
   const fetchExpenses = async (budgetId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/expenses?userId=${userId}&budgetId=${budgetId}`
+        `http://localhost:3001/data/expenses?userId=${userId}&budgetId=${budgetId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass the token in the headers
+          },
+        }
       );
       setExpenses(response.data);
     } catch (error) {
@@ -97,14 +107,12 @@ const Analytics = () => {
     (data) => data.total / data.count
   );
 
-  // Pie Chart options
   const pieChartOptions = {
     legend: {
       position: "bottom",
     },
   };
 
-  // Bar Chart options
   const barChartOptions = {
     scales: {
       y: {

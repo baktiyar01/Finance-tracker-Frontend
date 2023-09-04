@@ -27,19 +27,16 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/signup", {
+      const response = await axios.post("http://localhost:3001/auth/signup", {
         user,
         pwd,
         confirmPassword,
       });
       console.log(response.data);
-
-      // Display success message
       setSuccessMsg(true);
       setErrMsg("");
     } catch (error) {
       console.log("Error:", error);
-      // Display error message
       setErrMsg("Error occurred during signup");
       setSuccessMsg(false);
     }

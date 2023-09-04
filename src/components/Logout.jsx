@@ -15,7 +15,7 @@ const Logout = () => {
 
     const timeout = setTimeout(() => {
       handleLogout();
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timeout);
   }, [navigate, setToken]);

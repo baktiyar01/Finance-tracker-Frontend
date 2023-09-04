@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import aqshaLogo from "../images/aqsha-logo.jpg";
-import { useAuth } from "../../provider/authProvider";
 import styles from "./Home.module.css";
+import Card from "react-bootstrap/Card";
+import Lottie from "react-lottie";
+import animationData from "../assets/homeAnimation.json";
+
 const Home = () => {
-  const { token } = useAuth();
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -20,22 +28,76 @@ const Home = () => {
             data sync across devices, Aqsha helps users take control of their
             finances and achieve their financial goals with ease.
           </p>
-
-          {!token && (
-            <>
-              <h3 className={styles.h3}>Please login to start.</h3>
-              <div className={styles.btnContainer}>
-                <Link to="/login" className={styles.btnPrimary}>
-                  Login
-                </Link>
-              </div>
-            </>
-          )}
         </div>
         <div className={styles.image}>
-          <img src={aqshaLogo} alt="Aqsha App" width="298" height="274" />
+          <Lottie
+            animationData={animationData}
+            options={defaultOptions}
+            height={400}
+            width={400}
+            loop={true}
+          />
         </div>
       </div>
+
+      <div className={styles.aboutUs}>
+        <h2>About Us</h2>
+        <div className={styles.aboutUsColumns}>
+          <Card className={styles.card}>
+            <Card.Body>
+              <Card.Text>
+                Welcome to Aqsha! We are dedicated to helping individuals manage
+                their finances effectively with our intuitive expense tracking
+                app.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+
+          <Card className={styles.card}>
+            <Card.Body>
+              <Card.Text>
+                Our mission is to provide you with the tools to take control of
+                your financial journey. With Aqsha, you can easily track your
+                expenses, analyze spending patterns, and make informed decisions
+                about your finances.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+
+          <Card className={styles.card}>
+            <Card.Body>
+              <Card.Text>
+                Aqsha empowers you to understand where your money goes and make
+                proactive changes to achieve your financial goals. No more
+                confusion – just clear insights and actionable steps to
+                financial well-being.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+
+      <div className={styles.instructions}>
+        <h2>How to Use the Application</h2>
+        <Card className={styles.card}>
+          <Card.Body>
+            {" "}
+            Getting started with Aqsha is simple. Sign up or log in to your
+            account and start tracking your expenses. You can add budgets,
+            monitor your spending, and receive personalized recommendations to
+            optimize your finances.
+          </Card.Body>
+        </Card>
+      </div>
+      <footer className={styles.footer}>
+        <p>&copy; 2023 Made by Baktiyar</p>
+        <a
+          href="https://www.linkedin.com/in/baktiyar-yerkinov-9271ba226/"
+          className={styles.footerLink}
+        >
+          Linkedin
+        </a>
+      </footer>
     </div>
   );
 };
