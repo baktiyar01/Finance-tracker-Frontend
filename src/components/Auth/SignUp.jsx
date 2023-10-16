@@ -27,11 +27,14 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/auth/signup", {
-        user,
-        pwd,
-        confirmPassword,
-      });
+      const response = await axios.post(
+        "https://finanse-tracker-backend.onrender.com/auth/signup",
+        {
+          user,
+          pwd,
+          confirmPassword,
+        }
+      );
       console.log(response.data);
       setSuccessMsg(true);
       setErrMsg("");

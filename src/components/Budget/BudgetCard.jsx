@@ -68,5 +68,4 @@ const BudgetCard = ({
     </Card>
   );
 };
-
 export default BudgetCard;

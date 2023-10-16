@@ -34,7 +34,7 @@ const Analytics = () => {
   const fetchBudgets = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/data/budgets?userId=${userId}`,
+        `https://finanse-tracker-backend.onrender.com/data/budgets?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass the token in the headers
@@ -49,7 +49,7 @@ const Analytics = () => {
   const fetchExpenses = async (budgetId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/data/expenses?userId=${userId}&budgetId=${budgetId}`,
+        `https://finanse-tracker-backend.onrender.com/data/expenses?userId=${userId}&budgetId=${budgetId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass the token in the headers
