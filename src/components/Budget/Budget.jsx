@@ -18,7 +18,7 @@ const Budget = () => {
   const [showAddBudgetForm, setShowAddBudgetForm] = useState(false);
   const [showAddExpenseForm, setShowAddExpenseForm] = useState(false);
   const [selectedBudgetId, setSelectedBudgetId] = useState(null);
-
+  const apiUrl = process.env.REACT_APP_API_URL;
   const handleShowAddBudgetForm = () => {
     setShowAddBudgetForm(true);
   };
@@ -40,7 +40,7 @@ const Budget = () => {
   const handleAddBudget = async (budgetData) => {
     try {
       const response = await axios.post(
-        "https://finanse-tracker-backend.onrender.com/budget/addBudget",
+        `${apiUrl}/budget/addBudget`,
         {
           user_id: userId,
           ...budgetData,
@@ -64,24 +64,18 @@ const Budget = () => {
         expenses
           .filter((expense) => expense.budget_id === budgetId)
           .map((expense) =>
-            axios.delete(
-              `https://finanse-tracker-backend.onrender.com/data/expenses/${expense.id}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
+            axios.delete(`${apiUrl}/data/expenses/${expense.id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
           )
       );
-      await axios.delete(
-        `https://finanse-tracker-backend.onrender.com/data/budgets/${budgetId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.delete(`${apiUrl}/data/budgets/${budgetId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchBudgets();
       fetchExpenses();
@@ -93,7 +87,7 @@ const Budget = () => {
   const handleAddExpense = async (expenseData) => {
     try {
       const response = await axios.post(
-        "https://finanse-tracker-backend.onrender.com/budget/addExpense",
+        `${apiUrl}/budget/addExpense`,
         {
           user_id: userId,
           ...expenseData,
@@ -120,14 +114,11 @@ const Budget = () => {
 
   const handleDeleteExpense = async (expenseId, budgetId) => {
     try {
-      await axios.delete(
-        `https://finanse-tracker-backend.onrender.com/data/expenses/${expenseId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.delete(`${apiUrl}/data/expenses/${expenseId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       fetchExpenses(budgetId);
     } catch (error) {
       console.error("Failed to delete expense:", error);
@@ -137,7 +128,7 @@ const Budget = () => {
   const fetchBudgets = async () => {
     try {
       const response = await axios.get(
-        `https://finanse-tracker-backend.onrender.com/data/budgets?userId=${userId}`,
+        `${apiUrl}/data/budgets?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -153,7 +144,7 @@ const Budget = () => {
   const fetchExpenses = async (budgetId) => {
     try {
       const response = await axios.get(
-        `https://finanse-tracker-backend.onrender.com/data/expenses?userId=${userId}&budgetId=${budgetId}`,
+        `${apiUrl}/data/expenses?userId=${userId}&budgetId=${budgetId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

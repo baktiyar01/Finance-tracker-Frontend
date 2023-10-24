@@ -13,28 +13,23 @@ const Login = () => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await axios.post(
-        "https://finanse-tracker-backend.onrender.com/auth/login",
-        {
-          user: user,
-          pwd: pwd,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/auth/login`, {
+        user: user,
+        pwd: pwd,
+      });
       const token = response.data.token;
 
-      setTimeout(() => {
-        setToken(token);
-        navigate("/", { replace: true });
-      }, 500);
-      console.log(response.data);
-      setSuccess(true);
+      setToken(token);
+      navigate("/", { replace: true });
     } catch (error) {
       if (!error.response) {
         setErrMsg("No Server Response");
@@ -48,17 +43,20 @@ const Login = () => {
 
       userRef.current.focus();
     }
+
+    setLoading(false);
   };
 
   return (
     <div className={styles.SignApp}>
-      {success ? (
+      {loading && (
         <div className="loading-container">
           <Spinner animation="border">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </div>
-      ) : (
+      )}
+      {!loading && (
         <section className={styles.section}>
           <p className={errMsg ? styles.errMsg : styles.offscreen}>{errMsg}</p>
           <h1 className={styles.h1}>Sign in</h1>

@@ -2,60 +2,71 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Auth.module.css";
-
+import Spinner from "react-bootstrap/Spinner";
+import { useAuth } from "../../provider/authProvider";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const userRef = useRef();
   const errRef = useRef();
-
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
+  const { setToken } = useAuth();
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccessMsg] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [registered, setRegistered] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (pwd !== confirmPassword) {
       setErrMsg("Password did not match");
       setPwd("");
       setConfirmPassword("");
+      setLoading(false);
       return;
     }
 
     try {
-      const response = await axios.post(
-        "https://finanse-tracker-backend.onrender.com/auth/signup",
-        {
-          user,
-          pwd,
-          confirmPassword,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/auth/signup`, {
+        user,
+        pwd,
+        confirmPassword,
+      });
+      const tokenResponse = await axios.post(`${apiUrl}/auth/login`, {
+        user,
+        pwd,
+      });
+      if (tokenResponse.data.token) {
+        setToken(tokenResponse.data.token);
+        setRegistered(true);
+        navigate("/", { replace: true });
+      }
       console.log(response.data);
-      setSuccessMsg(true);
       setErrMsg("");
     } catch (error) {
       console.log("Error:", error);
       setErrMsg("Error occurred during signup");
-      setSuccessMsg(false);
     }
+    setLoading(false);
   };
 
   return (
     <>
       <div className={styles.SignApp}>
-        {success ? (
-          <section className={styles.section}>
-            <h1>You are successfully registered</h1>
-            <p>
-              <Link to="/">Go to Home</Link>
-            </p>
-          </section>
-        ) : (
+        {loading && (
+          <div className="loading-container">
+            <Spinner animation="border">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        )}
+        {!loading && !registered && (
           <section className={styles.section}>
             <p className={errMsg ? styles.errMsg : styles.offscreen}>
               {errMsg}

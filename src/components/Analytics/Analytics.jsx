@@ -31,10 +31,11 @@ const Analytics = () => {
   const userId = jwt_decode(token).id;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const apiUrl = process.env.REACT_APP_API_URL;
   const fetchBudgets = async () => {
     try {
       const response = await axios.get(
-        `https://finanse-tracker-backend.onrender.com/data/budgets?userId=${userId}`,
+        `${apiUrl}/data/budgets?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass the token in the headers
@@ -49,7 +50,7 @@ const Analytics = () => {
   const fetchExpenses = async (budgetId) => {
     try {
       const response = await axios.get(
-        `https://finanse-tracker-backend.onrender.com/data/expenses?userId=${userId}&budgetId=${budgetId}`,
+        `${apiUrl}/data/expenses?userId=${userId}&budgetId=${budgetId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass the token in the headers
